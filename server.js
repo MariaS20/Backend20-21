@@ -1,24 +1,15 @@
 const express = require('express')
-const bodyParser = require('body-parser')
-const mongo = require('mongodb')
-const ejs = require("ejs")
-const slug = require("slug")
-const port = 8000
+const app = express()
+const port = 3000
 
 
 require('dotenv').config()
 
 
-//connect met de database
+app.get('/', function (req, res) {
+    res.send('Test test testtt en nog eens test en test eeeeen test !')
+  })
 
-let db = null
-const url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
-
-mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
-  if (err) {
-    throw err
-  }
-  
-  db = client.db(process.env.DB_NAME)
-  
-})
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+  })
