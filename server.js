@@ -42,7 +42,7 @@ express()
   .listen(3000)
 
 
-//vind de db die wordt gebruikt
+//vind de db die wordt gebruikt     // lijkt bijna t zelfde op de voorbeelden van school
 function gebruikers(req, res, next) {
   db.collection('user').find().toArray(done)
 
@@ -55,6 +55,7 @@ function gebruikers(req, res, next) {
   }
 }
 
+//zelfde met deze, vanuit slides??????
 // function user(req, res, next) {
 //   const id = req.params.id
 
