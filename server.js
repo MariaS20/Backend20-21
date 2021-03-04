@@ -1,15 +1,17 @@
 const express = require("express");
 const server = express();
-const bodyParser = require('body-parser')
-const mongo = require('mongodb')
-const ejs = require("ejs")
-const slug = require("slug")
-require('dotenv').config()
+const bodyParser = require('body-parser');
+const mongo = require('mongodb');
+const ejs = require("ejs");
+const slug = require("slug");
+require('dotenv').config();
+const app = express();
+const port = 8000;
 
 // mongodb driver
 const MongoClient = require("mongodb").MongoClient;
 
-const dbConnectionUrl = "mongodb://dbTess:MyPassword@ElasticIP:27017/databaseName?authSource=admin";
+const dbConnectionUrl = "mongodb+srv://dbTess:neverAgain@backenddata.9wfwo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 function initialize(
     dbName,
@@ -41,7 +43,7 @@ const body_parser = require("body-parser");
 // parse JSON (application/json content-type)
 server.use(body_parser.json());
 
-const port = 3000;
+
 
 // db setup
 const db = require("./server.js")
@@ -65,3 +67,12 @@ db.initialize(dbName, collectionName, function(dbCollection) { // successCallbac
 }, function(err) { // failureCallback
   throw (err);
 });
+
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
