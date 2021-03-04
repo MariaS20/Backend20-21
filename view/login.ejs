@@ -1,6 +1,14 @@
-<% include head.ejs %>
+<%- include("view/head.ejs"); %>
 <title>Inloggen</title>
 <h1>Inloggen</h1>
+
+<ul>
+  <% for(var i=0; i < data.length; i++) {​​​​ %>
+   <li> <%= data[i].name %> </li> 
+   <li><%= data[i].location %></li>
+  <% }​​​​ %>
+  </ul>
+
 <form action=/login method=post>
   <label>Naam <input name=naam></label>
   <label>Wachtwoord <input name=wachtwoord type=password></label>
@@ -8,4 +16,4 @@
 </form>
 
 <a href="registreren">Nog geen account?</a>
-<% include tail.ejs %>
+<%- include("view/tail.ejs"); %>

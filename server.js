@@ -1,83 +1,78 @@
 const express = require("express");
-const server = express();
+const app = express();
 const bodyParser = require('body-parser');
-// const mongo = require('mongodb');
+const mongo = require('mongodb');
 const ejs = require("ejs");
 const slug = require("slug");
-const app = express();
 const port = 3000;
 // require('dotenv').config();
 
-let collection = null;
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASS + "@backenddata.9wfwo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
-  useNewUrlParser: true
-});
+// let collection = null;
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASS + "@backenddata.9wfwo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, {
+//   useNewUrlParser: true
+// });
 
 //database connect
-client.connect(function (err, client) {
-  if (err) {
-    throw err
-  }
-  collection = client.db("users").collection("Datingwebsite");
-})
+// client.connect(function (err, client) {
+//   if (err) {
+//     throw err
+//   }
+//   collection = client.db("Datingwebsite").collection("users");
+// });
 
 //routes
-express()
-  .use(express.static('static'))
-  .use(bodyParser.urlencoded({ extended: true }))
-  .set('view engine', 'ejs')
-  .set('views', 'view')
-  .get('/', Datingwebsite)
-  .post('/', add)
-  .post('/login', checklogin)
-  .get('/registreren', form)
-  .get('/login', loginform)
+
+app.use(express.static('public')); 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded()); //to support url encoded bodies
+app.set('view engine', 'ejs');
+app.set('views', 'view');
+app.get('/', datingWebsite)
+app.post('/', add)
+app.post('/login', checklogin)
+app.get('/registreren', form)
+app.get('/login', loginform)
   // .get('/:id', user)
-  .get('/loginFailed', checklogin)
-  .get('/loginSucces', checklogin)
-  .use(notFound)
-  .listen(3000);
+  app.get('/loginFailed', checklogin)
+  app.get('/loginSucces', checklogin);
+  
 
-
-
-function Datingwebsite(req, res, next) {
-  db.collection('users').find().toArray(done)
-
-  function done(err, data) {
-    if (err) {
-      next(err)
-    } else {
-      res.render('login.ejs', { data: data })
-    }
+const persons = [
+  {
+    name: "Tess",
+    location: "Uithoorn"
+  },
+  {
+    name: "piet",
+    location: "Amstelveen"
   }
+]
+
+
+function datingWebsite(req, res, next) {
+  res.render('login.ejs', { data: persons })
 };
 
 function loginform(req, res) {
-  res.render('login.ejs')
+  try {
+    res.render('login.ejs')
+  } catch (error) {
+    console.log("this is the error", error)
+  }
 };
 
 function form(req, res) {
   res.render('registreren.ejs')
 };
 
-db.initialize(dbName, collectionName, function(dbCollection) { // successCallback
-  dbCollection.insertOne({
-     naam: req.body.naam,
-     email: req.body.email,
-     wachtwoord: req.body.wachtwoord
-   }, done)
- 
-}, function(err) { // failureCallback
- throw (err);
-});
 
 
 
 //checkt de ingegeven username en het wachtwoord met die uit de database 
 function checklogin(req, res, next) {
-  db.collection('users').findOne({ naam: req.body.naam }, done)
+  collection('users').findOne({ naam: req.body.naam }, done)
 
 
   function done(err, data) {
@@ -97,15 +92,16 @@ function checklogin(req, res, next) {
 };
 
 
-//dealt met not found pages
-function notFound(req, res) {
-  res.status(404).render('404.ejs')
+
+
+function add(req, res){
+  res.send("test")
 };
 
 // app.get('/', (req, res) => {
 //   res.send('Test 1 Test 2 test??? test')
 // })
 
-// app.listen(port, () => {
-//   console.log(`Example app listening at http://localhost:${port}`)
-// })
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
