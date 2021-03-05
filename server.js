@@ -105,7 +105,7 @@ function checklogin(req, res, next) {
 
 
 function add(req, res){
-  res.render("registerenSucces.ejs")
+  res.render("registrerenSucces.ejs")
 };
 
 // app.get('/', (req, res) => {
