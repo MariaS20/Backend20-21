@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));  //to support url encoded bodies
 app.set('view engine', 'ejs');
 app.set('views', 'view');
-app.post('/', add);
+app.post('/', register);
 app.post('/login', checklogin);
 app.get('/registreren', form);
 app.get('/login', loginform);
@@ -101,12 +101,23 @@ function checklogin(req, res, next) {
   }
 };
 
+function register(req, res, next) {
+  collection.insertOne({
+    naam: req.body.naam,
+    email: req.body.email,
+    wachtwoord: req.body.wachtwoord
+  }, done)
+
+  function done(err, data) {
+    if (err) {
+      next(err)
+    } else {
+      res.redirect('/')
+    }
+  }
+}
 
 
-
-function add(req, res){
-  res.render("registrerenSucces.ejs")
-};
 
 // app.get('/', (req, res) => {
 //   res.send('Test 1 Test 2 test??? test')
