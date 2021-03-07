@@ -20,15 +20,20 @@ Ik maak gebruik van MongoDb, deze heb ik lokaal geïnstalleerd.
 
 2. Clone mijn repository 
 ```
-git clone https://github.com/MariaS20/Blok-Tech 
+git clone https://github.com/MariaS20/Backend20-21 
 ```
+3. Ga naar de geclonde map. 
+```
+cd /Backend20-21
+```
+4. Plaats de .env file in de map.
 
-3. Zodra je in de clone van mijn repository zit, installeer npm 
+5. Zodra je in de clone van mijn repository zit, installeer npm 
 ```
 npm install
 ```
 
-4. Start de applicatie
+6. Start de applicatie
 ```
 node server.js
 ```
@@ -47,6 +52,16 @@ ejs         https://www.npmjs.com/package/ejs
 slug        https://www.npmjs.com/package/slug
 
 dotenv      https://www.npmjs.com/package/dotenv
+
+
+## Datamodel
+Ik maak gebruik van MongoDb, deze heb ik lokaal geïnstalleerd. 
+
+```
+naam: "tess22"
+email: "tess@gmail.com"
+wachtwoord: "tess1"
+```
 
 ## Wiki
 Voor meer informatie over het project en het onderzoek dat ik heb gedaan kunt u in mijn wiki kijken. 
