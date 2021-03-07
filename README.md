@@ -55,7 +55,7 @@ dotenv      https://www.npmjs.com/package/dotenv
 
 
 ## Datamodel
-Ik maak gebruik van MongoDb, deze heb ik lokaal geïnstalleerd. 
+Het datamodel dat te zien is in mijn database. 
 
 ```
 naam: "tess22"
