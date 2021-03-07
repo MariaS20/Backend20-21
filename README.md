@@ -55,5 +55,5 @@ Voor meer informatie over het project en het onderzoek dat ik heb gedaan kunt u 
 ## License
 Dit project maakt gebruik van een MIT License. 
 
-[MIT License](https://github.com/MariaS20/Blok-Tech/blob/master/LICENSE.md)
+[MIT License](https://github.com/MariaS20/Backend20-21/blob/master/LICENSE.md)
 
