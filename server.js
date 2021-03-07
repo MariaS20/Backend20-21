@@ -113,6 +113,26 @@ function checklogin(req, res, next) {
   }
 };
 
+function search(req, res, next) {
+  collection.findOne({ naam: req.body.naam }, done)
+
+
+  function done(err, data) {
+    if (err) {
+      next(err)
+    } else {
+      if (data.wachtwoord == req.body.wachtwoord) {
+        console.log('Login geslaagd');
+        res.render('loginSucces.ejs')
+      } else {
+        console.log('Login mislukt');
+        res.render('loginFailed.ejs')
+
+      }
+    }
+  }
+};
+
 //shows up when wanted page is not found
 function notFound(req, res) {
   res.status(404).render('404.ejs')
@@ -123,5 +143,5 @@ function notFound(req, res) {
 // })
 
 app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`)
+  console.log(`App is running`)
 });
