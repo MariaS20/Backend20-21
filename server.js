@@ -38,28 +38,26 @@ app.get('/loginSucces', checklogin);
 app.get('/', renderHome);
 // app.get('/', datingWebsite)
 //   // .get('/:id', user)
-
-
  
-const persons = [
- {
- name: 'Tess',
- wachtwoord: 'Uithoorn'
- },
- {
- name: 'Piet',
- wachtwoord: 'amstelveen'
- }
-];
+// const persons = [
+//  {
+//  name: 'Tess',
+//  wachtwoord: 'Uithoorn'
+//  },
+//  {
+//  name: 'Piet',
+//  wachtwoord: 'amstelveen'
+//  }
+// ];
  
 function renderHome(req, res) {
  try {
- res.render('login.ejs', {data: persons});
+ res.render('login.ejs');
  } catch (error) {
- 
- }
-};
- 
+  console.log("this is the error", error)
+}
+ };
+
 app.listen(PORT, () => {
  console.log('app running on port', PORT);
 });
@@ -115,7 +113,7 @@ function register(req, res, next) {
       res.redirect('/')
     }
   }
-}
+};
 
 
 
