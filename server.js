@@ -8,6 +8,7 @@ const ejs = require("ejs");
 const slug = require("slug");
 // const port = 3000;
 
+
 let db = null;
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASS + "@backenddata.9wfwo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -36,6 +37,7 @@ app.get('/login', loginform);
 app.get('/loginFailed', checklogin);
 app.get('/loginSucces', checklogin);
 app.get('/', renderHome);
+app.use(notFound)
 // app.get('/', datingWebsite)
 //   // .get('/:id', user)
  
@@ -57,10 +59,6 @@ function renderHome(req, res) {
   console.log("this is the error", error)
 }
  };
-
-app.listen(PORT, () => {
- console.log('app running on port', PORT);
-});
   
 // function datingWebsite(req, res, next) {
 //   res.render('login.ejs', { data: persons })
@@ -76,6 +74,22 @@ function loginform(req, res) {
 
 function form(req, res) {
   res.render('registreren.ejs')
+};
+
+function register(req, res, next) {
+  collection.insertOne({
+    naam: req.body.naam,
+    email: req.body.email,
+    wachtwoord: req.body.wachtwoord
+  }, done)
+
+  function done(err, data) {
+    if (err) {
+      next(err)
+    } else {
+      res.redirect('/')
+    }
+  }
 };
 
 //checkt de ingegeven username en het wachtwoord met die uit de database 
@@ -99,28 +113,17 @@ function checklogin(req, res, next) {
   }
 };
 
-function register(req, res, next) {
-  collection.insertOne({
-    naam: req.body.naam,
-    email: req.body.email,
-    wachtwoord: req.body.wachtwoord
-  }, done)
-
-  function done(err, data) {
-    if (err) {
-      next(err)
-    } else {
-      res.redirect('/')
-    }
-  }
-};
 
 
+//shows up when wanted page is not found
+function notFound(req, res) {
+  res.status(404).render('404.ejs')
+}
 
 // app.get('/', (req, res) => {
 //   res.send('Test 1 Test 2 test??? test')
 // })
 
-// app.listen(PORT, () => {
-//   console.log(`Example app listening at http://localhost:${port}`)
-// })
+app.listen(PORT, () => {
+  console.log(`Example app listening at http://localhost:${PORT}`)
+})
