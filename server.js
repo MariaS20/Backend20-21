@@ -9,14 +9,14 @@ const slug = require("slug");
 // const port = 3000;
 
 
-let db = null;
+let collection = null;
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASS + "@backenddata.9wfwo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
   useNewUrlParser: true
 });
 
-// database connect
+// database connection
 client.connect(function (err, client) {
   if (err) {
     throw err
@@ -94,7 +94,7 @@ function register(req, res, next) {
 
 //checkt de ingegeven username en het wachtwoord met die uit de database 
 function checklogin(req, res, next) {
-  db.collection('users').findOne({ naam: req.body.naam }, done)
+  collection.findOne({ naam: req.body.naam }, done)
 
 
   function done(err, data) {
@@ -113,12 +113,10 @@ function checklogin(req, res, next) {
   }
 };
 
-
-
 //shows up when wanted page is not found
 function notFound(req, res) {
   res.status(404).render('404.ejs')
-}
+};
 
 // app.get('/', (req, res) => {
 //   res.send('Test 1 Test 2 test??? test')
@@ -126,4 +124,4 @@ function notFound(req, res) {
 
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`)
-})
+});
