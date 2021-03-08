@@ -1,0 +1,12 @@
+<%- include("./head.ejs"); %>
+<title>Delete</title>
+<h1>Delete jouw profiel</h1>
+  
+<form action="deleteProfile" method=post>
+    <label>Gebruikersnaam <input name=naam></label>
+    <label>Wachtwoord <input name=wachtwoord type="password"></label>
+    <button>Delete account</button>
+</form>
+ 
+<a href="/login">Terug naar login</a>
+<%- include("./tail.ejs"); %>

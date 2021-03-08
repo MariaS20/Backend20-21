@@ -38,24 +38,11 @@ app.get('/loginFailed', checklogin);
 app.get('/loginSucces', checklogin);
 app.get('/updateProfile', updateform);
 app.post('/updateProfile', update);
-// app.delete('/updateProfile', update);
+app.post('/deleteProfile', removeform);
+app.delete('/deleteProfile', remove);
 app.get('/', renderHome);
 app.use(notFound)
 
-
-// app.get('/', datingWebsite)
-//   // .get('/:id', user)
- 
-// const persons = [
-//  {
-//  name: 'Tess',
-//  wachtwoord: 'Uithoorn'
-//  },
-//  {
-//  name: 'Piet',
-//  wachtwoord: 'amstelveen'
-//  }
-// ];
  
 function renderHome(req, res) {
  try {
@@ -64,18 +51,6 @@ function renderHome(req, res) {
   console.log("this is the error", error)
 }
  };
-  
-// function datingWebsite(req, res, next) {
-//   res.render('login.ejs', { data: persons })
-// };
-
-// function loginform(req, res) {
-//   try {
-//     res.render('login.ejs')
-//   } catch (error) {
-//     console.log("this is the error", error)
-//   }
-// };
 
 function form(req, res) {
   res.render('registreren.ejs')
@@ -99,19 +74,19 @@ function register(req, res, next) {
 
 //checkt de ingegeven username en het wachtwoord met die uit de database 
 function checklogin(req, res, next) {
-  collection.findOne({ naam: req.body.naam }, done)
+  collection.findOne({ naam: req.body.naam }, done) //zoekt naar de naam in de database zodra deze gevonden is door naar function done
 
 
   function done(err, data) {
     if (err) {
       next(err)
     } else {
-      if (data.wachtwoord == req.body.wachtwoord) {
+      if (data.wachtwoord == req.body.wachtwoord) { //als de naam overeenkomt met het wachtwoord dan is de login geslaagd
         console.log('Login geslaagd');
         res.render('loginSucces.ejs')
       } else {
-        console.log('Login mislukt');
-        res.render('loginFailed.ejs')
+        console.log('Login mislukt'); //zodra deze niet overeenkomen dan is de login mislukt.
+        res.render('loginFailed.ejs') //en wordt de pagina loginFailed terug gestuurd
 
       }
     }
@@ -125,53 +100,36 @@ function updateform(req, res) {
    console.log("this is the error", error)
  }
   };
+  function update(req, res, next) {
 
-  function update (req, res, next) {
+    collection.updateOne({ naam: req.body.naam }, { $set: { naam: req.body.newUsername } }, done)
 
-    collection.updateOne({
-    naam: req.body.naam),
-    {$set: {naam : req.body.newUsername}}
-    }, done)
-    
     function done(err, data) {
-    If(err){
-    next(err)
-    } else {
-    res.redirect('/')
-      }
-     }
-    };
-
-    // functie hieronder is wat ik net eigenlijk had
-
-// funciton update (req,res){
-//   collection.findOneAndupdate({
-//     naam: req.body.naam})
-//   .then(user =>{
-//     if(user == null) {
-//     console.log("Niemand gevonden met deze username")
-//   }
-//   else {
-//     user.set({
-//       naam : req.body.newUsername
-//     })
-//     user.save();
-//   }
-// })
-// };
+        if (err) {
+            next(err)
+        } else {
+            res.redirect('/')
+        }
+    }
+};
 
 
-// function remove(req) {
-//   User.findOne({username : req.body.username})
-//   .then(user => {
-//     if(user == null){
-//       console.log("Niemand gevonden met deze username")
-//     }
-//     else {
-//       user.remove();
-//     } 
-//   })
-// }; 
+function removeform(req, res) {
+  res.render('deleteProfile.ejs')
+};
+
+
+function remove(req) {
+  collection.findOne({username : req.body.username})
+  .then(user => {
+    if(user == null){
+      console.log("Niemand gevonden met deze username")
+    }
+    else {
+      user.remove();
+    } 
+  })
+}; 
 
 
 //shows up when wanted page is not found
