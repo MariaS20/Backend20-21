@@ -54,7 +54,7 @@ function form(req, res) {
   res.render('registreren.ejs')
 };
 
-function register(req, res, next) {
+function register(req, res, next) { 
   collection.insertOne({
     naam: req.body.naam,
     email: req.body.email,

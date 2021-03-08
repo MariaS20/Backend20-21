@@ -3,16 +3,16 @@ In deze readme kun je informatie vinden over de feature die ik heb gebouwd.
 # Datingapp
 
 ## Over de app
-Voor een datingapp moest ik een feature uitwerken, de feature is het inloggen en registreren voor een datingapp. De naam van de app is Soundmatch em je match op interesse in de zelfde muziek.  
+Voor een datingapp heb ik een feature uitgewerkt, de feature is het inloggen en registreren voor een datingapp. De naam van de app is Soundmatch em je match op interesse in de zelfde muziek.  
 
 ## Mijn job story
 Wanneer ik op een ander device zit, wil ik makkelijk kunnen inloggen, zodat ik hier niet veel tijd aan hoef te besteden.
 
 ## Build with
-Ik heb de code editor Visual Studio Code gebruikt. Voor het installeren van de database en packages de standaard terminal op MacOS.
+Ik heb de code editor Visual Studio Code gebruikt. Voor het installeren van de database en packages de standaard terminal zsh op MacOS.
 
 ## Database
-Ik maak gebruik van MongoDb, deze heb ik lokaal geïnstalleerd. 
+Ik maak gebruik van MongoDB, hierbij gebruik ik MongoDB Compass. 
 
 ## Het installeren 
 
@@ -45,7 +45,7 @@ Express     https://expressjs.com
 
 Body Parser https://www.npmjs.com/package/express-session
 
-Mongodb     https://www.npmjs.com/package/mongodb
+MongoDB     https://www.npmjs.com/package/mongodb
 
 ejs         https://www.npmjs.com/package/ejs
 
