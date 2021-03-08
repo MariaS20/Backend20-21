@@ -1,0 +1,14 @@
+<%- include("./head.ejs"); %>
+<title>Update</title>
+<h1>Update jouw profiel</h1>
+  
+<form action="updateProfile" method=put>
+    <label>Oude gebruikersnaam <input name=naam></label>
+    <label>Nieuwe gebruikersnaam <input name=newUsername></label>
+    <label>Nieuw wachtwoord <input name=wachtwoord type=password></label>
+    <button>Wijzig gegevens</button>
+</form>
+ 
+<a href="/login">Terug naar login</a>
+<%- include("./tail.ejs"); %>
+

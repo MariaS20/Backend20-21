@@ -33,9 +33,11 @@ app.set('views', 'view');
 app.post('/', register);
 app.post('/login', checklogin);
 app.get('/registreren', form);
-app.get('/login', loginform);
+// app.get('/login', loginform);
 app.get('/loginFailed', checklogin);
 app.get('/loginSucces', checklogin);
+app.put('/updateProfile', update);
+// app.delete('/updateProfile', update);
 app.get('/', renderHome);
 app.use(notFound)
 
@@ -66,13 +68,13 @@ function renderHome(req, res) {
 //   res.render('login.ejs', { data: persons })
 // };
 
-function loginform(req, res) {
-  try {
-    res.render('login.ejs')
-  } catch (error) {
-    console.log("this is the error", error)
-  }
-};
+// function loginform(req, res) {
+//   try {
+//     res.render('login.ejs')
+//   } catch (error) {
+//     console.log("this is the error", error)
+//   }
+// };
 
 function form(req, res) {
   res.render('registreren.ejs')
@@ -123,7 +125,7 @@ function update(req) {
   }
   else {
     user.set({
-      username : req.body.newUsername
+      naam : req.body.newUsername
     })
     user.save();
   }
@@ -131,17 +133,17 @@ function update(req) {
 
 };
 
-function remove(req) {
-  User.findOne({username : req.body.username})
-  .then(user => {
-    if(user == null){
-      console.log("Niemand gevonden met deze username")
-    }
-    else {
-      user.remove();
-    } 
-  })
-}; 
+// function remove(req) {
+//   User.findOne({username : req.body.username})
+//   .then(user => {
+//     if(user == null){
+//       console.log("Niemand gevonden met deze username")
+//     }
+//     else {
+//       user.remove();
+//     } 
+//   })
+// }; 
 
 
 //shows up when wanted page is not found

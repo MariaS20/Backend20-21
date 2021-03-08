@@ -62,12 +62,8 @@ input, textarea, button {
 input, textarea { width: 100% }
 
 input {
-  /* padding: 2em;
-  margin: 1em 0; */
-
   border-radius: 5px;
   border: 1.2px solid #bfbfbf;
-  
   outline-color: #fcd303;
 }
 
@@ -105,4 +101,18 @@ a {
 a:visited {
   text-decoration: none;
   
+}
+
+#update {
+  width: 200px;
+  height: 70px;
+}
+
+#remove {
+  width: 200px;
+  height: 70px;
+}
+
+#choiceButton {
+text-align: center;
 }

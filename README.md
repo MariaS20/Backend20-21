@@ -55,7 +55,7 @@ dotenv      https://www.npmjs.com/package/dotenv
 
 
 ## Datamodel
-Het datamodel dat te zien is in mijn database. 
+Het datamodel dat te zien is in mijn database. Disclaimer! de data die hieronder te vinden is staat niet in mijn database.
 
 ```
 naam: "tess22"
