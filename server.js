@@ -6,7 +6,6 @@ const PORT = 3000 || process.env.PORT;
 const mongo = require('mongodb');
 const ejs = require("ejs");
 const slug = require("slug");
-// const port = 3000;
 
 
 let collection = null;
@@ -33,7 +32,6 @@ app.set('views', 'view');
 app.post('/', register);
 app.post('/login', checklogin);
 app.get('/registreren', form);
-// app.get('/login', loginform);
 app.get('/loginFailed', checklogin);
 app.get('/loginSucces', checklogin);
 app.get('/updateProfile', updateform);
@@ -44,7 +42,7 @@ app.get('/', renderHome);
 app.use(notFound)
 
  
-function renderHome(req, res) {
+function renderHome(req, res) { //geeft de hoofdpagina login mee
  try {
  res.render('login.ejs');
  } catch (error) {
@@ -113,11 +111,9 @@ function updateform(req, res) {
     }
 };
 
-
 function removeform(req, res) {
   res.render('deleteProfile.ejs')
 };
-
 
 function remove(req) {
   collection.findOne({username : req.body.username})
@@ -131,15 +127,10 @@ function remove(req) {
   })
 }; 
 
-
 //shows up when wanted page is not found
-function notFound(req, res) {
+function notFound(req, res) {   
   res.status(404).render('404.ejs')
 };
-
-// app.get('/', (req, res) => {
-//   res.send('Test 1 Test 2 test??? test')
-// })
 
 app.listen(PORT, () => {
   console.log(`App is running`)

@@ -3,13 +3,14 @@
 <h1>Inloggen</h1>
 <p>Je bent nu ingelogd!</p> 
 
-<form id="choiceButton" action=/updateProfile method=get id="choiceButton">
+<section id="container">
+<form class="choiceButton" action=/updateProfile method=get id="choiceButton">
     <button id="update" >Update profiel</button>
  </form>
 
- <form id="choiceButton" action=/deleteProfile method=post>
+ <form class="choiceButton" action=/deleteProfile method=post>
     <button id="remove" >Verwijder profiel</button>
  </form>
-
+</section>
 <%- include("./tail.ejs"); %>
 

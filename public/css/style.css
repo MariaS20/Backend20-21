@@ -113,6 +113,15 @@ a:visited {
   height: 70px;
 }
 
-#choiceButton {
+.choiceButton {
+box-shadow: none;
+border: none;
+display: inline-block;
+align-content: center;
+width: 230px;
 text-align: center;
+}
+
+#container{
+  margin-left: 175px;
 }
