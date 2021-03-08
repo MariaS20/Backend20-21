@@ -38,6 +38,8 @@ app.get('/loginFailed', checklogin);
 app.get('/loginSucces', checklogin);
 app.get('/', renderHome);
 app.use(notFound)
+
+
 // app.get('/', datingWebsite)
 //   // .get('/:id', user)
  
@@ -113,25 +115,34 @@ function checklogin(req, res, next) {
   }
 };
 
-function search(req, res, next) {
-  collection.findOne({ naam: req.body.naam }, done)
-
-
-  function done(err, data) {
-    if (err) {
-      next(err)
-    } else {
-      if (data.wachtwoord == req.body.wachtwoord) {
-        console.log('Login geslaagd');
-        res.render('loginSucces.ejs')
-      } else {
-        console.log('Login mislukt');
-        res.render('loginFailed.ejs')
-
-      }
-    }
+function update(req) {
+  User.findOne({ naam: req.body.naam })
+.then(user => {
+  if(user == null) {
+    console.log("Niemand gevonden met deze username")
   }
+  else {
+    user.set({
+      username : req.body.newUsername
+    })
+    user.save();
+  }
+})
+
 };
+
+function remove(req) {
+  User.findOne({username : req.body.username})
+  .then(user => {
+    if(user == null){
+      console.log("Niemand gevonden met deze username")
+    }
+    else {
+      user.remove();
+    } 
+  })
+}; 
+
 
 //shows up when wanted page is not found
 function notFound(req, res) {
