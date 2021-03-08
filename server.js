@@ -36,7 +36,8 @@ app.get('/registreren', form);
 // app.get('/login', loginform);
 app.get('/loginFailed', checklogin);
 app.get('/loginSucces', checklogin);
-app.put('/updateProfile', update);
+app.get('/updateProfile', updateform);
+app.post('/updateProfile', update);
 // app.delete('/updateProfile', update);
 app.get('/', renderHome);
 app.use(notFound)
@@ -117,21 +118,29 @@ function checklogin(req, res, next) {
   }
 };
 
-function update(req) {
-  User.findOne({ naam: req.body.naam })
-.then(user => {
-  if(user == null) {
-    console.log("Niemand gevonden met deze username")
-  }
-  else {
-    user.set({
-      naam : req.body.newUsername
-    })
-    user.save();
-  }
-})
+function updateform(req, res) {
+  try {
+  res.render('updateProfile.ejs');
+  } catch (error) {
+   console.log("this is the error", error)
+ }
+  };
 
-};
+  function update (req, res, next) {
+
+    collection.updateOne({
+    naam: req.body.naam),
+    {$set: {naam : req.body.newUsername}}
+    }, done)
+    
+    function done(err, data) {
+    If(err){
+    next(err)
+    } else {
+    res.redirect('/')
+      }
+     }
+    };
 
 // function remove(req) {
 //   User.findOne({username : req.body.username})
