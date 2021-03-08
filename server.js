@@ -142,6 +142,25 @@ function updateform(req, res) {
      }
     };
 
+    // functie hieronder is wat ik net eigenlijk had
+
+// funciton update (req,res){
+//   collection.findOneAndupdate({
+//     naam: req.body.naam})
+//   .then(user =>{
+//     if(user == null) {
+//     console.log("Niemand gevonden met deze username")
+//   }
+//   else {
+//     user.set({
+//       naam : req.body.newUsername
+//     })
+//     user.save();
+//   }
+// })
+// };
+
+
 // function remove(req) {
 //   User.findOne({username : req.body.username})
 //   .then(user => {
