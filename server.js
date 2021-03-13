@@ -9,7 +9,7 @@ const slug = require("slug");
 
 
 let collection = null;
-const MongoClient = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient ;
 const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASS + "@backenddata.9wfwo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
   useNewUrlParser: true
@@ -39,7 +39,7 @@ app.post('/updateProfile', update);
 app.post('/deleteProfile', removeform);
 app.delete('/deleteProfile', remove);
 app.get('/', renderHome);
-app.use(notFound)
+app.get('*', notFound);
 
  
 function renderHome(req, res) { //geeft de hoofdpagina login mee
@@ -98,6 +98,7 @@ function updateform(req, res) {
    console.log("this is the error", error)
  }
   };
+
   function update(req, res, next) {
 
     collection.updateOne({ naam: req.body.naam }, { $set: { naam: req.body.newUsername } }, done)
@@ -115,6 +116,7 @@ function removeform(req, res) {
   res.render('deleteProfile.ejs')
 };
 
+//werkt momenteel niet
 function remove(req) {
   collection.findOne({username : req.body.username})
   .then(user => {
